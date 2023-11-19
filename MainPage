@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Racket Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2980b9;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 1em;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        .cart-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Tennis Racket Shop</h1>
+    </header>
+
+    <nav>
+        <a href="tennisweb.html">Home</a>
+        <a href="#">Products</a>
+        <!-- Link to the cart page with an ID -->
+        <a href="#" id="cart-link" onclick="openCartPage()">Cart</a>
+        <a href="Contact.html">Contact</a>
+        <!-- Add more navigation links as needed -->
+    </nav>
+
+    <section id="cart-section">
+        <!-- Cart items will be dynamically added here -->
+    </section>
+
+    <section>
+        <div class="product">
+            <h2>Wilson Pro Staff Team 13.0</h2>
+            <img src="WPS.webp" alt="Wilson Pro Staff Team 13.0">
+            <p>Description: High-quality tennis racket for players of all levels.</p>
+            <p>Price: $99.99</p>
+            <button onclick="addToCart('Wilson Pro Staff Team 13.0', 99.99)">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <h2>Babolat Pure Drive</h2>
+            <img src="BPD.webp" alt="Babolat Pure Drive">
+            <p>Description: Advanced racket with improved control and power.</p>
+            <p>Price: $129.99</p>
+            <button onclick="addToCart('Babolat Pure Drive', 129.99)">Add to Cart</button>
+        </div>
+		
+		<div class="product">
+		    <h2>Babolat Aero Pure Rafa</h2>
+            <img> <img src="BPR.webp"</img>
+            <p>Description: Advanced racket with improved control and spin.</p>
+            <p>Price: $129.99</p>
+            <button onclick="addToCart('Babolat Pure Aero Rafa', 99.99)">Add to Cart</button>
+        </div>
+		
+		<div class="product">
+		    <h2>Head Speed Team 700</h2>
+            <img> <img src="HST.webp"</img>
+            <p>Description: Advanced racket with amazing control and power.</p>
+            <p>Price: $199.99</p>
+            <button onclick="addToCart('Head Speed Team 700', 199.99)">Add to Cart</button>
+        </div>
+		
+		<div class="product">
+            <h2>Wilson Ultra</h2>
+			<img> <img src="WU.webp"</img>
+            <p>Description: Advanced racket with improved control and power.</p>
+            <p>Price: $109.99</p>
+            <button onclick="addToCart('Wilson Ultra 13.0', 109.99)">Add to Cart</button>
+        </div>
+		<br>
+		<br>
+        </section>
+
+    <footer>
+        <p>&copy; 2023 Tennis Racket Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Shopping cart array to store items
+        var shoppingCart = [];
+
+        function addToCart(productName, price) {
+            // Create an object representing the product
+            var product = {
+                name: productName,
+                price: price
+            };
+
+            // Add the product to the shopping cart
+            shoppingCart.push(product);
+
+            // Optionally, you can update the user about the addition
+            alert(`Added ${productName} to cart. Total: $${price}`);
+
+            // Update the cart link to reflect the number of items in the cart
+            updateCartLink();
+        }
+
+        function updateCartLink() {
+            // Get the cart link element
+            var cartLink = document.getElementById('cart-link');
+
+            // Update the link text to show the number of items in the cart
+            cartLink.textContent = `Cart (${shoppingCart.length})`;
+        }
+
+        function openCartPage() {
+            // Display cart items when the cart link is clicked
+            displayCartItems();
+        }
+
+        function displayCartItems() {
+            var cartSection = document.getElementById('cart-section');
+
+            // Clear existing content
+            cartSection.innerHTML = '';
+
+            // Display each item in the cart
+            shoppingCart.forEach(function (item) {
+                var cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+
+                var itemName = document.createElement('h2');
+                itemName.textContent = item.name;
+
+                var itemPrice = document.createElement('p');
+                itemPrice.textContent = 'Price: $' + item.price.toFixed(2);
+
+                cartItemDiv.appendChild(itemName);
+                cartItemDiv.appendChild(itemPrice);
+                cartSection.appendChild(cartItemDiv);
+            });
+        }
+    </script>
+</body>
+
+</html>
